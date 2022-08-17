@@ -1,0 +1,35 @@
+```sh
+sudo vim /etc/systemd/system/NodeServer.service
+```
+
+```
+[Unit]
+Description=MozEconomia Node Server
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/node /home/ec2-user/me/dist/core/infra/http/server.js
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=my-node-server
+User=ec2-user
+EnvironmentFile=/home/ec2-user/me/.env
+
+[Install]
+WantedBy=multi-user.target
+```
+
+start the service
+
+```sh
+sudo systemctl enable NodeServer.service
+sudo systemctl start NodeServer.service
+```
+
+status of the service
+
+```sh
+sudo systemctl status NodeServer.service
+```
