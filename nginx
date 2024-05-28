@@ -29,3 +29,5 @@ server {
                 proxy_cache_bypass $http_upgrade;
         }
 }
+
+PORT=4000 pm2 start npm --name "curati" -- start
